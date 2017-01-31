@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<script src="js/jquery.js"></script>
+		<script src="js/sorcery.js"></script>
+		<link type="text/css" rel="stylesheet" href="css/style.css" />
+		<meta lang="fr" xml:lang="fr" content="text/html;charset=UTF-8" http-equiv="Content-Type">
+		<title>Sword & Sorcery</title>
+	</head>
+		
+	<body>
+	<audio src="music/snowpeak.mp3" type="audio/mp3" autoplay=""></audio>
+		<div id="status">
+			<div class="life">
+				Vie : <span class="value">--</span>
+			</div>
+			<div class="life_monster">
+				Vie monstre : <span class="value2">--</span>
+			</div>
+			<div class="inventaire">
+				Inventaire <br/>
+				<span class="vie"><img src="img/life.jpg" height="25"><em>(cliquer pour utiliser)</em><br/></span>
+				<span class="arc"><img src="img/arc.jpg" height="25"><br/></span>
+				<span class="clé"><img src="img/cle.jpg" height="25"><br/></span>
+				<span class="popo"><img src="img/popo.jpg" height="25"></span>
+
+			</div>
+		</div>
+		
+
+		<div class="section" id="intro">	
+			<h2>Le donjon de Blizzeta</h2>
+			Un jeu dont vous êtes le héros.<br/>			
+			<button go="wakeUp">Commencer l'aventure !</button>
+		</div>
+	
+		<div class="section" id="wakeUp">
+			Vous vous réveillez. Vous avez la tête lourde. <br/>
+			Vous regardez autour de vous. Cet endroit ne vous dit rien. (La consommation de drogue est mauvais pour la santé, attention à vous !)<br/>
+			<button go="begin">Se relever</button>
+		</div>
+		<div class="section" id="begin">
+			
+			Vous êtes dans une pièce sombre. <br/>
+			En face de vous, 2 portes.<br/>
+			
+			<button go="doorLocked">Prendre la porte de gauche</button>
+			<button go="biblio">Prendre la porte de droite</button>
+		</div>
+	
+		<div class="section" id="examine">
+			Vous ne découvrez rien de plus...<br/>
+		
+			<button go="doorLocked">Prendre la porte de gauche</button>
+			<button go="biblio">Prendre la porte de droite</button>
+		</div>
+
+		<div class="section" id="biblio">
+			Vous arrivez dans une bibliothèque<br/>
+
+			<button go="clé">Prendre un bouquin</button>
+			<button go="examine_bib">Faire le tour de la pièce</button>
+			<button go="begin">Revenir dans la pièce précédente</button>
+		</div>
+		<div class="section" id="examine_bib">
+			Vous ne découvrez rien de plus...<br/>
+		
+			<button go="clé">Prendre un bouquin</button>
+			<button go="begin">Revenir dans la pièce précédente</button>
+		</div>
+
+		<div class="section" id="clé">
+			Quelque chose tombe de la bibliothèque : une clé.<br/>
+			<button go="doorLocked" att="clé">Prendre la clé et aller à la seconde porte</button>
+		</div>
+		
+		<div class="section" id="doorLocked">
+			Malheureusement, la porte est fermée à clé. <br/>
+			Elle a l'air vraiment solide : 
+			peu probable que vous puissiez l'ouvrir sans clé et en la tapant.<br/>
+			<button go="hitDoor"> Essaye de crochette la porte avec un couteaux</button>
+			<button go="biblio">Prendre la porte de droite</button>
+			<button class="clé" go="monster1">Utiliser la clé</button>
+		</div>
+		
+		<div class="section" id="hitDoor">
+			BLAM ! La porte s'est ouverte. <br/>
+			Par contre, vous vous êtes blessé la main. <br/>
+			Vous perdez 1 PV.<br/>
+			<button go="monster1">Passer la porte</button>
+		</div>
+
+		<div class="section" id="corridor">
+			Vous continuez d'avancer mais vous ne voyez rien, encore rien et toujours rien.<br/>
+			<button go="croisement">Continuer d'avancer</button>
+		</div>
+
+		<div class="section" id="croisement">
+			Vous arrivez à un croisement.<br/>
+			Face à vous, 3 tunnels, tous aussi sombres les uns que les autres.<br/>
+			Vous avez beau essayer, vous ne pouvez pas voir à l'intérieur.<br/>
+			<button go="coffre">Prendre le tunnel de gauche</button>
+			<button go="room">Prendre le tunnel du milieu</button>
+			<button go="monster2">Prendre le tunnel de droite</button>
+		</div>
+
+		<div class="section" id="room">
+			Vous arrivez dans une pièce où il y a beaucoup de bazarre<br/>
+			Vous voyez une porte en face de vous<br/>
+			Que voulez-vous faire ?<br/>
+			<button go="checkPopo">Fouiller la pièce</button>
+			<button go="monster2">Continuer d'avancer</button>
+		</div>
+
+		<div class="section" id="checkPopo">
+			A force de fouiller, vous tombez sur une fiole.<br/>
+			Cela ressemble à un ragoût très apprécié des Gorons.<br/>
+			<button go="monster2" att="popo">Ramasser la fiole et continuer d'avancer</button>
+		</div>
+
+		<div class="section" id="coffre">
+			A force d'avancer, vous tombez sur un coffre. Celui-ci à l'air d'être fermé.<br/>
+			Que voulez-vous faire ?<br/>
+			<button go="hitCoffre">Donner un coup de pied dedans</button>
+			<button go="crashCoffre">Le Jeter contre le mur</button>
+			<button go="croisement">Faire demi-tour</button>
+		</div>
+		
+		<div class="section" id="hitCoffre">
+			Aie ! <br/>
+			Le coffre s'est ouvert mais vous avez très mal au pied... Vous perdez un point de vie...<br/>
+			Dans le coffre vous trouvez un arc et des flèches.<br/>
+			<button go="croisement" att="arc">Tout récupérer et faire demi-tour</button>
+		</div>
+
+		<div class="section" id="crashCoffre">
+			
+			Le coffre s'explose contre le mur !<br/>
+			Dans des décombres, vous trouvez un arc et des flèches.<br/>
+			<button go="croisement" att="arc">Tout récupérer et faire demi-tour</button>
+		</div>
+
+		<div class="section" id="popo">
+			
+			Le ragoût a l'air de lui faire plaisir.<br/>
+			Le Goron vous est redevable et semble être géné. <br>
+			Il vous ouvre une porte cachée et vous laisse passer.<br/>
+			<button go="exit">Passer la porte et continuer</button>
+		</div>
+
+
+		<!-- Monstres -->
+		<div class="section" id="monster1">
+			Oh ! Un monstre sauvage de type véner apparaît<br/>
+			<button go="fight">Engager le combat</button>
+		</div>
+
+		<div class="section" id="monster2">
+			Vous arrivez dans une pièce avec une porte en face de vous.<br/>
+            Cependant un Goron est assoupi juste à côté.<br/>
+            Que faites-vous ?<br/>
+			<button go="fight2"> Vous avancez quitte à le réveiller</button>
+            <button go="croisement">Vous faites demi-tour</button>
+		</div>
+
+		<div class="section" id="fight2">
+			Vous avez fait trop de bruit ou le Goron a le sommeil léger...<br/>
+			Il s'est réveillé et vous a vu, vous n'avez pas d'autre choix que de vous battre...<br/>
+			<button go="fight">Engager le combat</button>
+		</div>
+		
+		<div class="section" id="fight">
+			<span> </span>
+			Attaque:<br/>
+			<button att="1" go="fight" >Un coup de poing</button>
+			<button att="2" go="fight" >Un coup d'épée</button>
+			<button att="3" go="fight" class="arc">Tirer une flèche</button>
+			<button go="popo" class="popo">Utiliser le ragoût</button>
+		</div>
+
+		<div class="section" id="win">
+			Vous avez tué le monstre ! <br/>
+			Une potion de vie apparaît.<br/>
+			<button att="vie" go="corridor">Ramassez-la et continuez</button>
+			
+		</div>
+
+
+		<div class="section" id="exit">
+			Vous apercevez de la lumière... La sortie ? <br/>
+			Vous continuez de courir et enfin vous voyez la lumière du jour... Vous avez réussi à vous échapper !<br/>
+			<button go="intro">Fin</button>
+		</div>
+		
+		<div class="section" id="death">
+			Vous êtes mort(e) !<br/>
+			<button go="wakeUp">Recommencer l'aventure</button>
+		</div>
+		
+</html>
